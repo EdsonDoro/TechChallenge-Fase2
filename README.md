@@ -49,7 +49,33 @@ Para popular a camada bronze, foi feita a conversão dos dados obtidos na origem
 ### Bronze
 Dados brutos, convertidos em parquet, sem análise, limpeza ou integração.
 ### Silver
-Dados tratados e integrados.
+A camada Silver foi construída a partir dos arquivos Parquet da camada Bronze. 
+Nesta etapa foram aplicadas regras de limpeza, padronização e validação para garantir maior confiabilidade dos dados.
+
+Tratamentos aplicados:
+
+- Padronização dos nomes das colunas para formato snake_case
+- Remoção de espaços em branco em campos textuais
+- Conversão de campos numéricos, como ano, metas e percentuais
+- Padronização de `sigla_uf` em letras maiúsculas
+- Padronização de `id_municipio` com 7 dígitos
+- Remoção de duplicidades por chaves de negócio
+- Validação de ano entre 2023 e 2030
+- Validação de percentuais e metas entre 0 e 100
+- Separação de registros inválidos em uma área de quarentena
+- Integração das bases de metas e avaliações por município e UF
+
+Arquivos gerados:
+
+- `silver_meta_alfabetizacao_brasil.parquet`
+- `silver_meta_alfabetizacao_uf.parquet`
+- `silver_meta_alfabetizacao_municipio.parquet`
+- `silver_avaliacao_alfabetizacao_uf.parquet`
+- `silver_avaliacao_alfabetizacao_municipio.parquet`
+- `silver_indicador_municipio.parquet`
+- `silver_indicador_uf.parquet`
+
+
 ### Gold
 Dados analíticos.
 
