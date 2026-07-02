@@ -23,7 +23,7 @@ Construir uma pipeline híbrida Batch + Streaming para integrar dados educaciona
         https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/avaliacao-da-alfabetizacao/resultados
 
 ## 4. Arquitetura da solução
-Explicar GCP, GCS, BigQuery, Pub/Sub, Airflow e camadas Bronze/Silver/Gold.
+"Explicar GCP, GCS, BigQuery, Pub/Sub, Airflow e camadas Bronze/Silver/Gold."
 
 ## 5. Diagrama da pipeline
 
@@ -43,27 +43,29 @@ F --> L[Cloud Logging / Monitoring]
 ```
 
 ## 6. Fluxo de dados
-Para popular a camada bronze, foi feita a conversao dos dados obtidos na origem em parquet, armazenando os mesmos em data\bronze
+Para popular a camada bronze, foi feita a conversão dos dados obtidos na origem em parquet, armazenando os mesmos em 'data\bronze'
 
 ## 7. Camadas Medalhão
 ### Bronze
-Dados brutos, convertidos em parquet, sem analise ou limpeza ou integração.
+Dados brutos, convertidos em parquet, sem análise, limpeza ou integração.
 ### Silver
 Dados tratados e integrados.
 ### Gold
 Dados analíticos.
 
 ## 8. Batch vs Streaming
-Explicar por que dados históricos entram via Batch e atualizações simuladas entram via Streaming.
+Todos os dados históricos obtidos através dos links disponiveis entram via batch no processo.
 
 ## 9. Qualidade de dados
-Listar regras de validação.
+As validações utlizadas foram:
+- Dados duplicados
+- Dados nulos
 
 ## 10. Monitoramento
-Explicar logs, alertas, métricas e falhas.
+"Explicar logs, alertas, métricas e falhas."
 
 ## 11. FinOps
-Explicar Parquet, particionamento, BigQuery sob demanda, controle de recursos e otimização de queries.
+O uso do Parquet é fundamental para garantir que o custo do processamento nao seja elevado dado ao volume de dados manipulado.
 
 ## 12. Aplicação em IA
 Explicar uso da Gold para predição de alfabetização, análise de desigualdade e apoio a políticas públicas.
@@ -74,8 +76,10 @@ Passos para rodar localmente ou em cloud.
 ## 14. Organização Git
 Branchs:
 * bronze-layer: dados convertidos para parquet na camada bronze. 
-* silver-layer:
-* gold-layer:
+* silver-layer:dados tratados e normalizados para garantir a qualidade das analises
+* gold-layer: dados analisados para que sejam capturados os insights propostos no projeto
+
+O desenvolvimento foi organizado com branchs de funcionalidade, como 'bronze-layer', integradas a branch principal 'main' por meio de Pull Requests.
 
 ## 15. Autores - Grupo 126
  - Alessandra M. Capecce,
