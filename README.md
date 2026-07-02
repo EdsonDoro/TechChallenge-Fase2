@@ -17,6 +17,10 @@ Construir uma pipeline híbrida Batch + Streaming para integrar dados educaciona
 - Metas por Município
 - Dados de alunos / indicadores
 - Fonte principal: Base dos Dados
+        
+        https://basedosdados.org/dataset/073a39d4-89cf-4068-b1e8-34ed0d9c0b72?table=bb27c746-18df-4ba8-8f98-5110232e2162
+        
+        https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/avaliacao-da-alfabetizacao/resultados
 
 ## 4. Arquitetura da solução
 Explicar GCP, GCS, BigQuery, Pub/Sub, Airflow e camadas Bronze/Silver/Gold.
@@ -39,11 +43,11 @@ F --> L[Cloud Logging / Monitoring]
 ```
 
 ## 6. Fluxo de dados
-Descrever ingestão, tratamento, integração, validação e disponibilização analítica.
+Para popular a camada bronze, foi feita a conversao dos dados obtidos na origem em parquet, armazenando os mesmos em data\bronze
 
 ## 7. Camadas Medalhão
 ### Bronze
-Dados brutos.
+Dados brutos, convertidos em parquet, sem analise ou limpeza ou integração.
 ### Silver
 Dados tratados e integrados.
 ### Gold
@@ -68,7 +72,10 @@ Explicar uso da Gold para predição de alfabetização, análise de desigualdad
 Passos para rodar localmente ou em cloud.
 
 ## 14. Organização Git
-Explicar branches, commits, PRs e evolução do projeto.
+Branchs:
+* bronze-layer: dados convertidos para parquet na camada bronze. 
+* silver-layer:
+* gold-layer:
 
 ## 15. Autores - Grupo 126
  - Alessandra M. Capecce,
