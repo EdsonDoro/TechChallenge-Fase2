@@ -46,8 +46,10 @@ F --> L[Cloud Logging / Monitoring]
 Para popular a camada bronze, foi feita a conversão dos dados obtidos na origem em parquet, armazenando os mesmos em 'data\bronze'
 
 ## 7. Camadas Medalhão
+
 ### Bronze
 Dados brutos, convertidos em parquet, sem análise, limpeza ou integração.
+
 ### Silver
 A camada Silver foi construída a partir dos arquivos Parquet da camada Bronze. 
 Nesta etapa foram aplicadas regras de limpeza, padronização e validação para garantir maior confiabilidade dos dados.
@@ -75,9 +77,27 @@ Arquivos gerados:
 - `silver_indicador_municipio.parquet`
 - `silver_indicador_uf.parquet`
 
-
 ### Gold
-Dados analíticos.
+A camada Gold consolida os dados tratados da Silver em tabelas analíticas prontas para consumo por dashboards, análises estatísticas e aplicações de IA.
+
+Arquivos gerados:
+
+- `gold_indicador_municipio.parquet`
+- `gold_indicador_uf.parquet`
+- `gold_comparativo_meta_resultado.parquet`
+- `gold_dataset_ia_municipio.parquet`
+- `resumo_gold.csv`
+
+Principais transformações:
+
+- Consolidação dos indicadores por município, ano, rede e série
+- Integração entre resultado observado e meta de alfabetização
+- Cálculo do `gap_meta`
+- Criação do campo `status_meta`
+- Classificação de risco educacional por município
+- Criação de dataset preparado para modelos de IA
+
+A tabela `gold_comparativo_meta_resultado` permite identificar municípios acima ou abaixo da meta de alfabetização, enquanto `gold_dataset_ia_municipio` pode ser usada futuramente para modelos de predição e priorização de políticas públicas.
 
 ## 8. Batch vs Streaming
 Todos os dados históricos obtidos através dos links disponiveis entram via batch no processo.
