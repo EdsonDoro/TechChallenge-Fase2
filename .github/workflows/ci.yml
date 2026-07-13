@@ -40,7 +40,7 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
       - name: Smoke ETL ingest
-        run: python -m src.ingestion.ingest --input data/raw_sample --output data/bronze_sample --pattern "*.csv"
+        run: python -m src.ingestion.ingest --input data/raw --output data/bronze --pattern "*.csv"
         continue-on-error: true   # smoke test pode falhar sem quebrar pipeline
       - name: Smoke ETL transform
         run: python -m src.transformation.transform
