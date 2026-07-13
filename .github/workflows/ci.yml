@@ -5,7 +5,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4   # v4 é estável e já roda em Node 24
+      - uses: actions/checkout@v4   # v4 já roda em Node 24
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -14,11 +14,13 @@ jobs:
         run: python -m pip install --upgrade pip
       - name: Install deps
         run: pip install -r requirements.txt
+      - name: Show installed packages
+        run: pip list
       - name: Verify pytest installed
         run: python -m pytest --version
       - name: Run tests
-        run: python -m pytest -q
+        run: python -m pytest -q || (echo "Tests failed" && exit 1)
       - name: Smoke ETL
         run: |
-          python -m src.etl.ingest --input data/raw_sample --output data/bronze_sample --pattern "*.csv" || true
-          python -m src.etl.transform || true
+          python -m src.etl.ingest --input data/raw_sample --output data/bronze_sample --pattern "*.csv" || (echo "ETL ingest failed" && exit 1)
+          python -m src.etl.transform || (echo "ETL transform failed" && exit 1)
