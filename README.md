@@ -672,7 +672,7 @@ A estrutura proposta contribui para uma visao mais integrada da alfabetizacao in
 ---
 
 ## 24. Video de Apresentação
-**Link Video**
+<a href="https://youtu.be/q_0OTdKN__g" target="_blank">Assista a apresentação</a>
 
 ---
 
